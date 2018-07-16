@@ -89,7 +89,7 @@ namespace CovalcoClientApi
                 // Especificamos en el header que se trata de un tipo JSON
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 
-                var result = await httpClient.PutAsync( String.Concat(Resource.editarAlumnos, id), byteContent);
+                var result = await httpClient.PutAsync( String.Concat(Resource.deleteEditAlumnos, id), byteContent);
 
             }
             catch (Exception ex)
@@ -98,6 +98,21 @@ namespace CovalcoClientApi
             }
         }
 
-        
+
+
+        public async void EliminarAlumnos(int id)
+        {
+            try
+            {
+                var result = await httpClient.DeleteAsync(String.Concat(Resource.deleteEditAlumnos, id));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+        }
+
+
     }
 }

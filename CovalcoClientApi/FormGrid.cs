@@ -38,7 +38,7 @@ namespace CovalcoClientApi
 
             listado = controller.ObtenerAlumnos().Result;
             grid_form.DataSource = listado;
-            
+
             // Columna botones editar
             DataGridViewButtonColumn btnEditar = new DataGridViewButtonColumn();
             btnEditar.HeaderText = "Editar";
@@ -74,6 +74,11 @@ namespace CovalcoClientApi
 
                 editarAlumno = new FormEditarAlumno();
                 editarAlumno.Show();
+            }
+            if (e.ColumnIndex == 5)
+            {
+                int id = Convert.ToInt32(grid_form.Rows[e.RowIndex].Cells[0].Value);
+                controller.EliminarAlumnos(id);
             }
         }
     }
