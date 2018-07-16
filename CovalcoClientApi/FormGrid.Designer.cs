@@ -41,6 +41,7 @@
             this.grid_form.Name = "grid_form";
             this.grid_form.Size = new System.Drawing.Size(443, 176);
             this.grid_form.TabIndex = 0;
+            this.grid_form.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CellClick);
             // 
             // button_añadir
             // 

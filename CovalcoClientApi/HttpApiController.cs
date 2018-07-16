@@ -72,9 +72,32 @@ namespace CovalcoClientApi
             {
                 throw ex;
             }
-
         }
 
 
+        public async void EditarAlumnos(int id, AlumnoViewModel alumno)
+        {
+            // Serializacion del objeto alumno
+            var alumnoJSON = JsonConvert.SerializeObject(alumno);
+
+            try
+            {
+                // Creacion de objeto de contenido para enviar la informacion
+                var encodingToBytes = System.Text.Encoding.UTF8.GetBytes(alumnoJSON);
+                var byteContent = new ByteArrayContent(encodingToBytes);
+
+                // Especificamos en el header que se trata de un tipo JSON
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                
+                var result = await httpClient.PutAsync( String.Concat(Resource.editarAlumnos, id), byteContent);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        
     }
 }
