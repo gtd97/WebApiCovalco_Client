@@ -41,9 +41,9 @@ namespace CovalcoClientApi
                     listado = deserialized;
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
-                throw ex;
+                throw;
             }
 
             // Parseo a listado
@@ -51,32 +51,28 @@ namespace CovalcoClientApi
         }
 
 
-        //public async Task<List<AlumnoViewModel>> AñadirAlumnos(string nombre, string apellido, string dni)
-        public async void AñadirAlumnos(string nombre, string apellido, string dni)
+        public async void AñadirAlumnos(AlumnoViewModel alumno)
         {
-            IEnumerable<AlumnoViewModel> detallesNuevoAlumno = new List<AlumnoViewModel>();
-
-            AlumnoViewModel alumno = new AlumnoViewModel(nombre, apellido, dni);
-            //var alumno = JsonConvert.SerializeObject(nombre, apellido, dni);
+            // Serializacion del objeto alumno
+            var alumnoJSON = JsonConvert.SerializeObject(alumno);
 
             try
             {
-                
-                var stringContent = new StringContent(alumno.ToString(), UnicodeEncoding.UTF8, "application/json");
-                HttpResponseMessage response = httpClient.PostAsync(Resource.obtenerAlumnos, stringContent).Result;
+                // Creacion de objeto de contenido para enviar la informacion
+                var encodingToBytes = System.Text.Encoding.UTF8.GetBytes(alumnoJSON);
+                var byteContent = new ByteArrayContent(encodingToBytes);
 
-                if (response.IsSuccessStatusCode)
-                {
-                    var alumnoJsonString = await response.Content.ReadAsStringAsync();
-                    var deserialized = JsonConvert.DeserializeObject<IEnumerable<AlumnoViewModel>>(alumnoJsonString);
-                    detallesNuevoAlumno = deserialized;
-                }
+                // Especificamos en el header que se trata de un tipo JSON
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                var result = await httpClient.PostAsync(Resource.obtenerAlumnos, byteContent);
+                
             }
             catch (Exception ex)
             {
                 throw ex;
             }
-            
+
         }
 
 

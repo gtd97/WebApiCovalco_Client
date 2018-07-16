@@ -28,22 +28,13 @@ namespace CovalcoClientApi
             formularioAñadir.Show();
         }
 
-        private void Button_Actualizar(object sender, EventArgs e)
+        public void Button_Actualizar(object sender, EventArgs e)
         {
             // Llamada a webservice
             List<AlumnoViewModel> listado = new List<AlumnoViewModel>();
             listado = controller.ObtenerAlumnos().Result;
             grid_form.DataSource = listado;
             grid_form.Refresh();
-
-            /*
-            HttpApiController controller = new HttpApiController();
-            List<AlumnoViewModel> alumnos = new List<AlumnoViewModel>();
-            alumnos = controller.GetCall().Result;
-            grid_form.DataSource = alumnos;
-            grid_form.Refresh();
-            */
-
         }
     }
 }

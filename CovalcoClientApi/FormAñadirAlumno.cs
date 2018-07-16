@@ -12,6 +12,7 @@ namespace CovalcoClientApi
 {
     public partial class FormAñadirAlumno : Form
     {
+        private FormGrid form_grid;
         HttpApiController controller;
 
         public FormAñadirAlumno()
@@ -24,11 +25,15 @@ namespace CovalcoClientApi
 
         private void Button_guardar(object sender, EventArgs e)
         {
-            //List<AlumnoViewModel> listado = new List<AlumnoViewModel>();
-            //listado = controller.AñadirAlumnos(tb_nombre.Text, tb_apellido.Text, tb_dni.Text);
+            // Crear objeto Alumno con los datos del formulario 
+            AlumnoViewModel alumno = new AlumnoViewModel(tb_nombre.Text, tb_apellido.Text, tb_dni.Text);
 
-            controller.AñadirAlumnos(tb_nombre.Text, tb_apellido.Text, tb_dni.Text);
+            // Enviar el objeto, para ser enviado por llamada al web service
+            controller.AñadirAlumnos(alumno);
 
+            //FormGrid grid = new FormGrid();
+            
+            //grid.grid_form.Refresh();
         }
     }
 }

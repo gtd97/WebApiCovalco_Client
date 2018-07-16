@@ -12,7 +12,10 @@ namespace CovalcoClientApi
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
         public string Dni { get; set; }
-        
+
+        // Constructor nulo, ya que sino al serializar en el Form daba problemas
+        public AlumnoViewModel() { }
+
         public AlumnoViewModel(int id, string nombre, string apellidos, string dni)
         {
             Id = id;
@@ -20,13 +23,14 @@ namespace CovalcoClientApi
             Apellidos = apellidos;
             Dni = dni;
         }
-
+        
+        
         public AlumnoViewModel(string nombre, string apellidos, string dni)
         {
             Nombre = nombre;
             Apellidos = apellidos;
             Dni = dni;
         }
-
+        
     }
 }
