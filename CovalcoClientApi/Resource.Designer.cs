@@ -59,23 +59,5 @@ namespace CovalcoClientApi {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a api/Alumnoes/.
-        /// </summary>
-        internal static string deleteEditAlumnos {
-            get {
-                return ResourceManager.GetString("deleteEditAlumnos", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Busca una cadena traducida similar a api/Alumnoes.
-        /// </summary>
-        internal static string obtenerAlumnos {
-            get {
-                return ResourceManager.GetString("obtenerAlumnos", resourceCulture);
-            }
-        }
     }
 }

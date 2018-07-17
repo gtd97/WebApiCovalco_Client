@@ -33,6 +33,7 @@ namespace CovalcoClientApi
 
         public void Button_Actualizar(object sender, EventArgs e)
         {
+
             // Llamada a webservice
             List<AlumnoViewModel> listado = new List<AlumnoViewModel>();
 
@@ -54,7 +55,6 @@ namespace CovalcoClientApi
             btnEliminar.UseColumnTextForButtonValue = true;
 
             grid_form.Columns.Add(btnEliminar);
-
             grid_form.Refresh();
         }
 
